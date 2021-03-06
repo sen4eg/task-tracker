@@ -1,6 +1,6 @@
 
 const Task = (props) => {
-    const value = 'Task placeholder';
+    const value = props.value;
     return (
         <div className="task">
             {value}
