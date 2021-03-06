@@ -5,14 +5,14 @@ const TaskColumn = (props) => {
     const {columnTitle} = props;
     const {tasks, addByValue} = useTasks();
     const populateTasks = () => {
-        console.log(tasks);
+        //console.log(tasks);
         if(tasks === undefined)
             return;
         if (props.finishRepresentant){
-            return tasks.finished.map((task, _id) => <Task value={task}/>);
+            return tasks.finished.map((task, _id) => <Task value={task} id={_id} key={_id} finished={true}/>);
         }
         else{
-            return tasks.open.map((task, _id) => <Task value={task}/>);    
+            return tasks.open.map((task, _id) => <Task value={task} id={_id} key={_id}/>);    
         }
     }
 
@@ -34,7 +34,7 @@ const TaskColumn = (props) => {
             <p>{columnTitle}</p>
             <form onSubmit={(e)=>{e.preventDefault();handleTaskAdded(e);}}>
                 <input name="input-field"/>
-                <input type="submit" className="hidden-sumbit-button" tabindex="-1"/>
+                <input type="submit" className="hidden-sumbit-button" tabIndex="-1"/>
             </form>
             {populateTasks()}            
         </div>

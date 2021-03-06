@@ -45,7 +45,10 @@ form{
   border-radius: 3px;
   margin: 3px;
   padding: 1px;
+}
 
+.-finished{
+  background-color: red;
 }
 
 .hidden-sumbit-button {
