@@ -1,6 +1,7 @@
 import { useTasks } from "../store/TasksProvider";
 import DeleteButton from "./DeleteButton";
 import TimePicker from 'react-time-picker'
+import ClockIcon from "./ClockIcon";
 
 const Task = ({ content, finished, id, scheduledTo,  }) => {
     const { removeByIDnCol, swapColumns, changeTask } = useTasks()
@@ -44,7 +45,9 @@ const Task = ({ content, finished, id, scheduledTo,  }) => {
                 />
             )
         } else {
-            return <input type='button' value="Schedule time" onClick={handleAddSchedule} />
+            return (<div onClick={handleAddSchedule} title="Assign time to task.">
+                    <ClockIcon/>
+                </div>);
         }
     }
 
@@ -53,7 +56,6 @@ const Task = ({ content, finished, id, scheduledTo,  }) => {
             <input readOnly type='checkbox' checked={finished} onClick={()=>swapColumns({id, finished, content, scheduledTo})}/>
             <label>{content}</label>   
             {renderTimePicker()}
-                          
             <DeleteButton onClick={()=>removeByIDnCol({id, finished})}/>
         </div>
     )

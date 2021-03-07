@@ -67,10 +67,6 @@ form{
   height: 1px;  
 }
 
-.task-content-input {
-  /* width: 100%; */
-}
-
 .App {
   width: auto;
   margin: auto;
@@ -82,7 +78,6 @@ form{
 
 input[type=checkbox]
 {
-  /* 1.7-sized Checkboxes */
   -ms-transform: scale(1.7); /* IE */
   -moz-transform: scale(1.7); /* FF */
   -webkit-transform: scale(1.7); /* Safari and Chrome */
@@ -94,13 +89,25 @@ input[type=checkbox]
   left:3px;
 }
 
-svg {
+svg.delete {
   width: 1.2rem;
   height: 1.2rem;
   vertical-align: middle;
   padding: 1px 2px 1px;
 }
 
+svg.clock{
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: auto;
+  vertical-align: middle;
+  padding: 1px 2px 1px;
+}
+
 svg:hover{
   fill:#2b33a0;
+}
+
+.react-time-picker{
+  margin-left: auto;
 }
