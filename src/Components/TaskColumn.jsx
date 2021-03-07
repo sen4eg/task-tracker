@@ -7,11 +7,9 @@ const TaskColumn = ({ columnTitle, showFinishedTasks }) => {
     const { tasks, addByValue } = useTasks();
     const inputRef = useRef(null);
     const renderTasks = () => {        
-        // if(tasks === undefined)
-//            return;
         const tasksToRender = showFinishedTasks ? tasks.finished : tasks.open
-        return tasksToRender.map((task, _id) => (
-            <Task value={task} id={_id} key={_id} finished={showFinishedTasks}/>
+        return tasksToRender.map(({content, id}) => (
+            <Task content={content} id={id} key={id} finished={showFinishedTasks}/>
         ))
     }
 
@@ -26,7 +24,7 @@ const TaskColumn = ({ columnTitle, showFinishedTasks }) => {
             finished: showFinishedTasks,
             content: input.value
         });
-        input.blur();
+        //input.blur();
         input.value = '';
     }
 
