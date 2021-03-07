@@ -1,42 +1,43 @@
+import {useRef} from 'react';
 import Task from "./Task"
 import { useTasks } from "../taskstorage/TasksProvider";
 
-const TaskColumn = (props) => {
-    const {columnTitle} = props;
-    const {tasks, addByValue} = useTasks();
-    const populateTasks = () => {
-        //console.log(tasks);
-        if(tasks === undefined)
-            return;
-        if (props.finishRepresentant){
-            return tasks.finished.map((task, _id) => <Task value={task} id={_id} key={_id} finished={true}/>);
-        }
-        else{
-            return tasks.open.map((task, _id) => <Task value={task} id={_id} key={_id}/>);    
-        }
+
+const TaskColumn = ({ columnTitle, showFinishedTasks }) => {
+    const { tasks, addByValue } = useTasks();
+    const inputRef = useRef(null);
+    const renderTasks = () => {        
+        // if(tasks === undefined)
+//            return;
+        const tasksToRender = showFinishedTasks ? tasks.finished : tasks.open
+        return tasksToRender.map((task, _id) => (
+            <Task value={task} id={_id} key={_id} finished={showFinishedTasks}/>
+        ))
     }
 
-    const handleTaskAdded = (e) => {
-        //console.log('31,', e);
-        if(e.target.firstChild.value.length <= 0)
+    const handleSubmitForm = (e) => {
+        e.preventDefault();
+        if(!inputRef || !inputRef.current) {
             return;
+        }
 
-        e.target.firstChild.blur();
+        const input = inputRef.current;
         addByValue({
-            finished: props.finishRepresentant === true,
-            content: e.target.firstChild.value
+            finished: showFinishedTasks,
+            content: input.value
         });
-        e.target.firstChild.value = '';
+        input.blur();
+        input.value = '';
     }
 
     return (
         <div className="task-column">
             <p>{columnTitle}</p>
-            <form onSubmit={(e)=>{e.preventDefault();handleTaskAdded(e);}}>
-                <input name="input-field"/>
+            <form onSubmit={handleSubmitForm}>
+                <input ref={inputRef} name="input-field"/>
                 <input type="submit" className="hidden-sumbit-button" tabIndex="-1"/>
             </form>
-            {populateTasks()}            
+            {renderTasks()}            
         </div>
     )
 }

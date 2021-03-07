@@ -1,21 +1,15 @@
 import { useTasks } from "../taskstorage/TasksProvider";
 
-const Task = (props) => {
-    const value = props.value;
-
-    const {removeByIDnCol,swapColumns} = useTasks()
-
-    let classes = ['task'];
-    if(props.finished){
-        classes.push(' -finished');
-    }
-
-    return (
-        
-        <div className={classes.join('')}>
-            <input type='button' onClick={()=>swapColumns({id: props.id, finished: props.finished, value})}/>
-            {value}
-            <input type='button' onClick={()=>removeByIDnCol( {id: props.id, finished: props.finished} )}/>
+const Task = ({ value, finished, id }) => {
+    const { removeByIDnCol, swapColumns } = useTasks()
+    
+    const classNames = finished ? 'task -finished' : 'task';
+    const toggleFinishStatusButtonText = finished ? "Mark unfinished" : "Mark finished"
+    return (        
+        <div className={classNames}>
+            <input type='button' value={toggleFinishStatusButtonText} onClick={()=>swapColumns({id, finished, value})}/>
+            {value}                 
+            <input type='button' value="Delete" onClick={()=>removeByIDnCol({id, finished})}/>
         </div>
     )
 }
