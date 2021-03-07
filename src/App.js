@@ -1,5 +1,6 @@
+import NotificationPanel from "./Components/NotificationPanel";
 import TaskColumn from "./Components/TaskColumn";
-import TasksProvider from "./taskstorage/TasksProvider";
+import TasksProvider from "./store/TasksProvider";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
             Task tracker
           </p>
         </header>
+        <NotificationPanel/>
         <div className="task-table">
           <TaskColumn columnTitle='TODO' showFinishedTasks={false}/>
           <TaskColumn columnTitle='DONE' showFinishedTasks={true}/>

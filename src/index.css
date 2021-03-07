@@ -33,12 +33,19 @@ form{
 .task-column {
   display: flex;
   flex-direction: column;
+  border: 0.17rem solid #599b8f;
   border-radius: 8px;
   background-color: #34a0a4;
   margin: 0 2px 0 2px;
+  box-shadow: 0px 0px 8px 5px #599b8fa2;
+  padding: 5px;
 }
 
 .task {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
   text-align: center;
   border: 1px solid #1e6091;
   background-color: #168aad;
@@ -48,7 +55,8 @@ form{
 }
 
 .-finished{
-  background-color: red;
+  background-color: #386d7e;
+  border: 1px solid #0e3744;
   text-decoration: line-through;
 }
 
@@ -59,6 +67,10 @@ form{
   height: 1px;  
 }
 
+.task-content-input {
+  /* width: 100%; */
+}
+
 .App {
   width: auto;
   margin: auto;
@@ -66,4 +78,29 @@ form{
   flex-direction: column;
   left: 5%;
   right: 5%;
+}
+
+input[type=checkbox]
+{
+  /* 1.7-sized Checkboxes */
+  -ms-transform: scale(1.7); /* IE */
+  -moz-transform: scale(1.7); /* FF */
+  -webkit-transform: scale(1.7); /* Safari and Chrome */
+  -o-transform: scale(1.7); /* Opera */
+  transform: scale(1.7);
+  padding: 10px;
+  margin-right: 8px;
+  position: relative;
+  left:3px;
+}
+
+svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: middle;
+  padding: 1px 2px 1px;
+}
+
+svg:hover{
+  fill:#2b33a0;
 }
