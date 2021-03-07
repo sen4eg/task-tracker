@@ -26,8 +26,8 @@ form{
   display: flex;
   align-self: center;
   justify-content: space-evenly;
-  min-width: 200px;
-  max-width: 400px;
+  min-width: 350px;
+  max-width: 750px;
 }
 
 .task-column {
@@ -99,7 +99,6 @@ svg.delete {
 svg.clock{
   width: 1.2rem;
   height: 1.2rem;
-  margin-left: auto;
   vertical-align: middle;
   padding: 1px 2px 1px;
 }
@@ -108,6 +107,10 @@ svg:hover{
   fill:#2b33a0;
 }
 
-.react-time-picker{
-  margin-left: auto;
+label{
+  flex-grow: 1;
+}
+
+form{
+  display: flex;
 }
