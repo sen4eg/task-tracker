@@ -110,7 +110,15 @@ svg:hover{
 label{
   flex-grow: 1;
 }
+.notification-panel{
+  position: absolute;
+  right: 16px;
+  background-color: darkseagreen;
+  padding: 4px;
+  margin-top: 16px; 
+}
 
-form{
-  display: flex;
+h3{
+  margin-top: 8px;
+  margin-bottom: 8px;
 }

@@ -8,42 +8,57 @@ const NotificationPanel = () => {
     const scheduledTasks = tasks.open.filter(({scheduledTo}) => !!scheduledTo)
     const now = new Date()
 
+    const nearestTasks = scheduledTasks.filter(({scheduledTo}) => {
+        const delta = scheduledTo.getTime() - now.getTime();
+        return (delta > 0) && (delta < PENDING_TASK_SHOW_OFFSET)
+    })
+
+    const currentlyRunningTasks = scheduledTasks.filter(({scheduledTo}) => {
+        const delta = (now.getTime() - scheduledTo.getTime())
+        return delta > 0 && delta < RUNNING_TASK_SHOW_OFFSET
+    })
+
     const renderPendingTasks = () => {
-        const nearestTasks = scheduledTasks.filter(({scheduledTo}) => {
-            const delta = scheduledTo.getTime() - now.getTime();
-            return (delta > 0) && (delta < PENDING_TASK_SHOW_OFFSET)
-        })
         if (nearestTasks.length === 0) {
-            return "None"
+            return;
         }
 
-        return nearestTasks.map((task) => <span>{task.content}</span>)
+        const tasks = nearestTasks.map((task) => 
+            <><span key={task.id}>{task.content}</span><br/></>)
+        return (
+            <>           
+                <h3>
+                    Starting soon: 
+                </h3>
+                <div>
+                    {tasks}
+                </div>
+            </>
+        );
     }
 
     const renderRunningTasks = () => {
-        
-        const currentlyRunningTasks = scheduledTasks.filter(({scheduledTo}) => {
-            const delta = (now.getTime() - scheduledTo.getTime())
-            return delta > 0 && delta < RUNNING_TASK_SHOW_OFFSET
-        })
-
         if (currentlyRunningTasks.length === 0) {
-            return "None"
+            return
         }
+        
+        const tasks = currentlyRunningTasks.map((task) => 
+            <><span key={task.id }>{task.content}</span><br/></>)
 
-        return currentlyRunningTasks.map((task) => <span>{task.content}</span>)
+        return (
+            <>
+                <h3>
+                    Currently running: 
+                </h3>
+                <div>{tasks}</div>
+            </>
+        )
     }
-
-    return (<>
-        <h3>
-            Starting soon: 
-        </h3>
-        <div>{renderPendingTasks()}</div>
-
-        <h3>
-            Currently running: 
-        </h3>
-        <div>{renderRunningTasks()}</div>
-    </>)
-}
+    
+    return (
+        <div className="notification-panel">
+            {renderPendingTasks()}
+            {renderRunningTasks()}
+        </div>)
+    }
 export default NotificationPanel;
