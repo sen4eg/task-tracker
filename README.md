@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-A project itself provides a task tracker, with two columns, open and completed tasks. Task can be added, by filling input form and pressing enter, deleted using cross button, or set time limits using clock icon. Once time limits set, task would be considered as soon *starting* for fifteen minutes before time stated on task and as *running* for forty five minutes from timestamp stated on it.
+A project itself provides a task tracker, with two columns, open and completed tasks. Task can be added, by filling input form and pressing enter, deleted using cross button, swaped to oposite column by marking checkbox on it, or set time limits using clock icon. Once time limits set, task would be considered as soon *starting* for fifteen minutes before time stated on task and as *running* for forty five minutes from timestamp stated on it.
 
 
 
