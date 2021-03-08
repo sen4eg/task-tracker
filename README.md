@@ -1,4 +1,4 @@
-## Demo avalible online:
+## Demo availble online:
 **[Link to live demo](https://task-tracker-demo-125.herokuapp.com/)**
 
 # A simple React based task tracker
